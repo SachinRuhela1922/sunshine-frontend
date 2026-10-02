@@ -1,0 +1,313 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=DM+Sans:wght@400;500&display=swap");
+
+.section {
+  --orange: #ff7a18;
+  --orange-soft: #ffa24d;
+  --black: #0a0a0a;
+  --white: #ffffff;
+  --bg: #e6f4ff;
+  --ink-muted: rgba(20, 33, 61, 0.72);
+  --muted: rgba(255, 255, 255, 0.72);
+  --bridge: 120px; /* kitni height me hero se blend ho */
+
+  position: relative;
+  isolation: isolate;
+  padding: clamp(96px, 11vw, 150px) 24px clamp(72px, 10vw, 140px);
+  background:
+    radial-gradient(900px 520px at 50% 0%, rgba(120, 195, 255, 0.45), transparent 70%),
+    radial-gradient(700px 420px at 90% 100%, rgba(255, 183, 3, 0.12), transparent 70%),
+    var(--bg);
+  color: var(--black);
+  font-family: "DM Sans", system-ui, sans-serif;
+}
+
+/* ---------- Background ---------- */
+.bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* hero ke neeche se upar tak fade hota hai, isliye hard line nahi dikhti */
+.bridge {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(var(--bridge) * -1);
+  height: var(--bridge);
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(230, 244, 255, 0) 0%,
+    rgba(230, 244, 255, 0.12) 35%,
+    rgba(230, 244, 255, 0.45) 65%,
+    rgba(230, 244, 255, 0.85) 85%,
+    var(--bg) 100%
+  );
+}
+
+.graph {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.85;
+}
+
+.fade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, var(--bg) 0%, transparent 20%, transparent 80%, var(--bg) 100%);
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.orbA {
+  width: 320px;
+  height: 320px;
+  top: 8%;
+  left: -80px;
+  background: radial-gradient(circle, rgba(255, 122, 24, 0.28) 0%, rgba(255, 122, 24, 0) 68%);
+  will-change: transform;
+  animation: drift 14s ease-in-out infinite alternate;
+}
+
+.orbB {
+  width: 260px;
+  height: 260px;
+  bottom: 6%;
+  right: -60px;
+  background: radial-gradient(circle, rgba(120, 195, 255, 0.4) 0%, rgba(120, 195, 255, 0) 68%);
+  will-change: transform;
+  animation: drift 18s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes drift {
+  to {
+    transform: translate3d(60px, -40px, 0) scale(1.15);
+  }
+}
+
+/* ---------- Layout ---------- */
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.header {
+  max-width: 720px;
+  margin: 0 auto clamp(48px, 6vw, 80px);
+  text-align: center;
+}
+
+.title {
+  margin: 0;
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.6rem, 7vw, 5rem);
+  line-height: 1;
+  color: var(--black);
+  letter-spacing: -0.03em;
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.sun {
+  background: linear-gradient(100deg, #ff5a00 0%, var(--orange) 35%, #ffb703 50%, var(--orange) 65%, #ff5a00 100%);
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: shine 5s linear infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position: -250% 0;
+  }
+}
+
+.subtitle {
+  margin: 20px auto 0;
+  max-width: 46ch;
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  line-height: 1.6;
+  color: var(--ink-muted);
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+  perspective: 1200px;
+}
+
+/* ---------- Cards ---------- */
+.card {
+  --rx: 0deg;
+  --ry: 0deg;
+  --mx: 50%;
+  --my: 50%;
+
+  position: relative;
+  border-radius: 24px;
+  padding: 1px;
+  background: linear-gradient(160deg, rgba(255, 122, 24, 0.7), rgba(161, 155, 155, 0.08) 45%, rgba(255, 122, 24, 0.25));
+  transform: rotateX(var(--rx)) rotateY(var(--ry));
+  transform-style: preserve-3d;
+  box-shadow: 0 24px 50px -28px rgba(0, 0, 0, 0.5);
+  transition: transform 0.25s ease-out, box-shadow 0.3s ease;
+  opacity: 0;
+  transform-origin: center;
+}
+
+.card:hover {
+  box-shadow: 0 34px 70px -22px rgba(255, 90, 0, 0.55);
+}
+
+.cardGlow {
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  background: radial-gradient(260px circle at var(--mx) var(--my), rgba(255, 122, 24, 0.35), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.card:hover .cardGlow {
+  opacity: 1;
+}
+
+.cardInner {
+  position: relative;
+  height: 100%;
+  padding: 32px 26px 34px;
+  border-radius: 23px;
+  background: var(--black);
+  color: var(--white);
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  margin-bottom: 26px;
+  border-radius: 16px;
+  background: var(--orange);
+  color: var(--black);
+  transform: translateZ(40px);
+  box-shadow: 0 12px 30px -8px rgba(255, 122, 24, 0.7);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.card:hover .icon {
+  background: var(--white);
+  transform: translateZ(55px) rotate(-6deg);
+}
+
+.cardTitle {
+  margin: 0 0 12px;
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-weight: 600;
+  font-size: 1.35rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  transform: translateZ(28px);
+}
+
+.cardText {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: var(--muted);
+  transform: translateZ(14px);
+}
+
+/* ---------- One orchestrated entrance ---------- */
+.inView .title {
+  animation: rise 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.inView .subtitle {
+  animation: rise 0.8s 0.15s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.inView .card {
+  animation: cardIn 0.9s calc(0.3s + var(--i) * 0.12s) cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes rise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    translate: 0 50px;
+    scale: 0.94;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .section {
+    padding: 64px 18px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+
+@media (hover: none) {
+  .card {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .title,
+  .subtitle,
+  .card {
+    opacity: 1;
+    transform: none;
+    animation: none !important;
+  }
+  .sun,
+  .orb {
+    animation: none;
+  }
+}

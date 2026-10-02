@@ -1,0 +1,484 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=DM+Sans:wght@400;500;700&display=swap");
+
+.section {
+  --orange: #ff7a18;
+  --orange-deep: #ff5a00;
+  --amber: #ffb703;
+  --ink: #0a0a0a;
+  --navy: #14213d;
+  --muted: rgba(20, 33, 61, 0.72);
+  --gap: 24px;
+  --run: 2.4s; /* path kitni der me draw ho */
+
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(80px, 10vw, 140px) 24px clamp(88px, 10vw, 150px);
+  /* top color WhySunshine ke bottom (#e6f4ff) se match karta hai */
+  background: linear-gradient(180deg, #e6f4ff 0%, #f1f7ff 14%, #fff6ec 55%, #fffdf9 100%);
+  color: var(--ink);
+  font-family: "DM Sans", system-ui, sans-serif;
+}
+
+/* ---------- Animated background ---------- */
+.bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+}
+.blobA {
+  width: 440px;
+  height: 440px;
+  top: 12%;
+  right: -120px;
+  background: radial-gradient(circle, rgba(255, 150, 50, 0.3) 0%, rgba(255, 150, 50, 0) 68%);
+  will-change: transform;
+  animation: driftA 16s ease-in-out infinite alternate;
+}
+.blobB {
+  width: 380px;
+  height: 380px;
+  top: 38%;
+  left: -140px;
+  background: radial-gradient(circle, rgba(120, 195, 255, 0.38) 0%, rgba(120, 195, 255, 0) 68%);
+  will-change: transform;
+  animation: driftB 20s ease-in-out infinite alternate;
+}
+.blobC {
+  width: 360px;
+  height: 360px;
+  bottom: -100px;
+  left: 42%;
+  background: radial-gradient(circle, rgba(255, 200, 80, 0.28) 0%, rgba(255, 200, 80, 0) 68%);
+  will-change: transform;
+  animation: driftA 22s ease-in-out infinite alternate-reverse;
+}
+@keyframes driftA {
+  to { transform: translate3d(-70px, 60px, 0) scale(1.18); }
+}
+@keyframes driftB {
+  to { transform: translate3d(90px, -50px, 0) scale(1.12); }
+}
+
+.dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(20, 33, 61, 0.14) 1.2px, transparent 1.7px);
+  background-size: 28px 28px;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
+  animation: dotsMove 36s linear infinite;
+}
+@keyframes dotsMove {
+  to { background-position: 28px 28px; }
+}
+
+/* sun with slowly rotating rays */
+.rays {
+  position: absolute;
+  top: -230px;
+  right: -230px;
+  width: 660px;
+  height: 660px;
+  border-radius: 50%;
+  background: repeating-conic-gradient(rgba(255, 140, 30, 0.17) 0deg 7deg, transparent 7deg 20deg);
+  -webkit-mask-image: radial-gradient(circle, #000 0%, transparent 68%);
+  mask-image: radial-gradient(circle, #000 0%, transparent 68%);
+  animation: spin 80s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.shapes {
+  position: absolute;
+  inset: 0;
+  container-type: size;
+}
+.shape {
+  position: absolute;
+  left: var(--x);
+  bottom: -60px;
+  width: var(--s);
+  height: var(--s);
+  opacity: 0;
+  animation: floatUp var(--d) linear var(--delay) infinite;
+}
+.circle { border: 2px solid rgba(255, 122, 24, 0.55); border-radius: 50%; }
+.dot    { background: rgba(255, 122, 24, 0.55); border-radius: 50%; }
+.square { border: 2px solid rgba(60, 140, 220, 0.5); border-radius: 6px; }
+.tri    { background: rgba(255, 183, 3, 0.6); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+
+@keyframes floatUp {
+  0%   { opacity: 0;   transform: translateY(0) rotate(0deg); }
+  10%  { opacity: 0.9; }
+  90%  { opacity: 0.9; }
+  100% { opacity: 0;   transform: translateY(-110cqh) rotate(300deg); }
+}
+@supports not (height: 1cqh) {
+  .shape { display: none; }
+}
+
+/* ---------- Header ---------- */
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.header {
+  max-width: 740px;
+  margin: 0 auto clamp(52px, 7vw, 88px);
+  text-align: center;
+}
+
+.title {
+  margin: 0;
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.5rem, 6.4vw, 4.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.shine {
+  background: linear-gradient(100deg, #ff5a00 0%, var(--orange) 35%, var(--amber) 50%, var(--orange) 65%, #ff5a00 100%);
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: shine 5s linear infinite;
+}
+@keyframes shine {
+  to { background-position: -250% 0; }
+}
+
+.subtitle {
+  margin: 20px auto 0;
+  max-width: 50ch;
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  line-height: 1.6;
+  color: var(--muted);
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+/* ---------- Steps ---------- */
+.steps {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* track: node 1 center se node 4 center tak */
+.line {
+  position: absolute;
+  top: 32px;
+  left: calc((100% - 3 * var(--gap)) / 8);
+  right: calc((100% - 3 * var(--gap)) / 8);
+  height: 4px;
+  margin-top: -2px;
+  border-radius: 4px;
+  background: repeating-linear-gradient(90deg, rgba(255, 122, 24, 0.38) 0 10px, transparent 10px 18px);
+}
+.fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--amber), var(--orange-deep));
+}
+/* glowing sun that leads the path */
+.fill::after {
+  content: "";
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  border-radius: 50%;
+  background: #fff;
+  border: 4px solid var(--orange-deep);
+  box-shadow: 0 0 0 7px rgba(255, 122, 24, 0.22), 0 0 26px 6px rgba(255, 122, 24, 0.55);
+  opacity: 0;
+}
+
+.step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 22px;
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.node {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid rgba(255, 122, 24, 0.35);
+  color: var(--orange-deep);
+  box-shadow: 0 12px 26px -12px rgba(255, 90, 0, 0.45);
+}
+.node svg {
+  width: 28px;
+  height: 28px;
+}
+.node::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 2px solid var(--orange);
+  opacity: 0;
+}
+
+.word {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-weight: 800;
+  font-size: 1.5rem;
+  letter-spacing: -0.01em;
+}
+
+/* ---------- Card ---------- */
+.card {
+  flex: 1;
+  padding: 28px 26px 26px;
+  border-radius: 26px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(255, 122, 24, 0.2);
+  box-shadow: 0 22px 50px -30px rgba(20, 33, 61, 0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  opacity: 0;
+}
+.card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(255, 122, 24, 0.55);
+  box-shadow: 0 30px 60px -26px rgba(255, 90, 0, 0.5);
+}
+
+.age {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255, 122, 24, 0.13);
+  color: #b84300;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.classes {
+  margin: 16px 0 10px;
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-weight: 600;
+  font-size: 1.4rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.text {
+  margin: 0 0 18px;
+  font-size: 0.97rem;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.tags li {
+  padding: 5px 11px;
+  border-radius: 9px;
+  background: #fff7ee;
+  border: 1px solid rgba(255, 122, 24, 0.22);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* 4-segment meter: shows how far along the journey this stage is */
+.meter {
+  display: flex;
+  gap: 6px;
+  margin-top: 24px;
+}
+.meter span {
+  flex: 1;
+  height: 6px;
+  border-radius: 6px;
+  background: rgba(255, 122, 24, 0.16);
+}
+.meter .on {
+  background: linear-gradient(90deg, var(--amber), var(--orange-deep));
+}
+
+/* ---------- One orchestrated entrance ---------- */
+.inView .title    { animation: rise 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+.inView .subtitle { animation: rise 0.8s 0.15s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+
+.inView .fill {
+  animation: growX var(--run) 0.5s linear forwards;
+}
+.inView .fill::after {
+  animation: sunLife calc(var(--run) + 0.5s) 0.5s linear forwards;
+}
+
+/* node i lights up when the path reaches it (3 gaps => i/3 of the run) */
+.inView .node {
+  animation: nodeOn 0.7s calc(0.5s + var(--i) * var(--run) / 3) both;
+}
+.inView .node::after {
+  animation: ping 2.2s calc(0.9s + var(--i) * var(--run) / 3) infinite;
+}
+.inView .card {
+  animation: cardUp 0.8s calc(0.6s + var(--i) * var(--run) / 3) cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes rise {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes growX {
+  to { width: 100%; }
+}
+@keyframes segGrow {
+  to { height: calc(100% + 30px); }
+}
+@keyframes sunLife {
+  0%   { opacity: 1; }
+  92%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+@keyframes nodeOn {
+  0%   { transform: scale(1); }
+  45%  { transform: scale(1.22); }
+  100% {
+    transform: scale(1);
+    background: linear-gradient(135deg, var(--amber), var(--orange-deep));
+    border-color: #fff;
+    color: #fff;
+    box-shadow: 0 16px 32px -10px rgba(255, 90, 0, 0.65);
+  }
+}
+@keyframes ping {
+  0%   { opacity: 0.7; transform: scale(1); }
+  80%, 100% { opacity: 0; transform: scale(1.65); }
+}
+@keyframes cardUp {
+  from { opacity: 0; translate: 0 44px; scale: 0.95; }
+  to   { opacity: 1; translate: 0 0;    scale: 1; }
+}
+
+/* ---------- Tablet: 2 x 2 ---------- */
+@media (max-width: 1020px) {
+  .steps {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 44px;
+  }
+  .line { display: none; }
+  .inView .node { animation-delay: calc(0.4s + var(--i) * 0.25s); }
+  .inView .node::after { animation-delay: calc(0.8s + var(--i) * 0.25s); }
+  .inView .card { animation-delay: calc(0.5s + var(--i) * 0.25s); }
+}
+
+/* ---------- Mobile: vertical path ---------- */
+@media (max-width: 640px) {
+  .section { padding-left: 18px; padding-right: 18px; }
+  .steps {
+    grid-template-columns: 1fr;
+    row-gap: 30px;
+  }
+  .step {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    align-items: start;
+    column-gap: 16px;
+  }
+  .head {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .word { font-size: 1.05rem; }
+
+  /* per-step connector: dashed track + orange fill down to the next node */
+  .line { display: none; }
+  .step:not(:last-child)::before,
+  .step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 30px;
+    top: 32px;
+    width: 4px;
+    border-radius: 4px;
+  }
+  .step:not(:last-child)::before {
+    height: calc(100% + 30px);
+    background: repeating-linear-gradient(180deg, rgba(255, 122, 24, 0.38) 0 10px, transparent 10px 18px);
+  }
+  .step:not(:last-child)::after {
+    height: 0;
+    background: linear-gradient(180deg, var(--amber), var(--orange-deep));
+  }
+  .inView .step:not(:last-child)::after {
+    animation: segGrow calc(var(--run) / 3) calc(0.5s + var(--i) * var(--run) / 3) linear forwards;
+  }
+
+  .inView .node { animation-delay: calc(0.5s + var(--i) * var(--run) / 3); }
+  .inView .node::after { animation-delay: calc(0.9s + var(--i) * var(--run) / 3); }
+  .inView .card { animation-delay: calc(0.6s + var(--i) * var(--run) / 3); }
+}
+
+@media (hover: none) {
+  .card:hover { transform: none; }
+}
+
+/* ---------- Reduced motion: final state, no movement ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .title, .subtitle, .card { opacity: 1; transform: none; translate: none; scale: none; }
+  .fill { width: 100%; }
+  .node {
+    background: linear-gradient(135deg, var(--amber), var(--orange-deep));
+    border-color: #fff;
+    color: #fff;
+  }
+  .section *, .section *::before, .section *::after { animation: none !important; }
+  .shapes { display: none; }
+}
+@media (prefers-reduced-motion: reduce) and (max-width: 640px) {
+  .step:not(:last-child)::after { height: calc(100% + 30px); }
+}

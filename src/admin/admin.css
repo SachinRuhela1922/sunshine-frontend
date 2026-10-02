@@ -1,0 +1,29 @@
+.a-login{display:flex;height:100vh;align-items:center;justify-content:center;background:#f1f5f9}
+.a-box{background:#fff;padding:30px;border-radius:12px;width:320px;box-shadow:0 4px 20px rgba(0,0,0,.1);display:flex;flex-direction:column;gap:12px}
+.a-panel{display:flex;min-height:100vh;background:#f1f5f9}
+.a-panel input,.a-panel textarea,.a-box input{width:100%;padding:9px;border:1px solid #cbd5e1;border-radius:6px;font:inherit}
+.a-panel textarea{min-height:90px}
+.a-panel button,.a-box button{cursor:pointer;border:0;border-radius:6px;padding:10px 16px;background:#f59e0b;font-weight:bold}
+.a-panel aside{width:230px;background:#1e293b;color:#fff;padding:20px 12px;position:sticky;top:0;height:100vh;overflow:auto;flex-shrink:0}
+.a-panel aside h3{margin-bottom:16px;padding-left:8px}
+.a-panel aside button{display:block;width:100%;text-align:left;background:none;color:#cbd5e1;font-weight:normal;margin-bottom:2px}
+.a-panel aside button.on,.a-panel aside button:hover{background:#334155;color:#fff}
+.a-panel .side-link{display:block;margin-top:14px;color:#f59e0b;background:none;text-align:left;font-size:14px;padding:8px}
+.a-panel main{flex:1;padding:24px;max-width:900px}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.save{background:#16a34a!important;color:#fff}
+.err{color:#dc2626;font-size:14px}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:13px;font-weight:bold;margin-bottom:4px}
+.up{display:flex;gap:10px;align-items:center;margin-top:6px;font-size:13px}
+.up input{width:auto!important;border:0!important;padding:0!important}
+.prev{max-height:90px;max-width:160px;border-radius:6px;margin-top:6px}
+.item{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:14px;margin-bottom:14px}
+.item-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-weight:bold}
+.del{background:#dc2626!important;color:#fff;padding:4px 10px!important}
+.mini{padding:4px 10px!important;background:#e2e8f0!important}
+.add{background:#2563eb!important;color:#fff;margin-right:8px}
+.toast{position:fixed;bottom:20px;right:20px;background:#1e293b;color:#fff;padding:12px 18px;border-radius:8px;z-index:100}
+@media(max-width:700px){.a-panel{flex-direction:column}.a-panel aside{width:100%;height:auto;position:static}}
+.field select{padding:10px;border:1px solid #cfd6e0;border-radius:8px;font:inherit;background:#fff}
+.field .hint{display:block;color:#6b7280;margin-top:4px}

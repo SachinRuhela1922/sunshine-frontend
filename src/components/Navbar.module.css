@@ -1,0 +1,281 @@
+.header {
+  --navy: #14213d;
+  --sun: #ffb703;
+  --amber: #fb8500;
+  --paper: #fffdf7;
+
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 1000;
+  padding: 18px 24px;
+  transition: padding 0.35s ease;
+}
+
+.nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 10px 14px 10px 20px;
+  border-radius: 999px;
+  background: rgba(255, 253, 247, 0.72);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid rgba(20, 33, 61, 0.08);
+  box-shadow: 0 6px 24px rgba(20, 33, 61, 0.06);
+  transition: box-shadow 0.35s ease, background 0.35s ease;
+}
+
+.scrolled { padding-top: 10px; }
+.scrolled .nav {
+  background: rgba(255, 253, 247, 0.92);
+  box-shadow: 0 14px 40px rgba(20, 33, 61, 0.14);
+}
+
+/* ---------- Logo ---------- */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--navy);
+  text-decoration: none;
+}
+.sun {
+  display: grid;
+  place-items: center;
+  color: var(--amber);
+}
+.rays {
+  transform-origin: 24px 24px;
+  transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.logo:hover .rays { transform: rotate(135deg); }
+.logo:hover .sun { color: var(--sun); }
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.brand small {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  margin-top: 3px;
+  opacity: 0.65;
+}
+
+/* ---------- Links ---------- */
+.links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.link {
+  position: relative;
+  display: block;
+  padding: 10px 18px;
+  color: var(--navy);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 999px;
+  overflow: hidden;
+  isolation: isolate;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* yellow pill jo neeche se upar fill hota hai */
+.link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(135deg, var(--sun), var(--amber));
+  border-radius: inherit;
+  transform: translateY(102%);
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.link:hover::before,
+.link:focus-visible::before {
+  transform: translateY(0);
+}
+.link:hover { transform: translateY(-1px); }
+.link:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
+
+/* text slide-swap effect */
+.link span {
+  display: block;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.link:hover span { transform: scale(1.04); }
+
+/* ---------- CTA ---------- */
+.cta {
+  position: relative;
+  overflow: hidden;
+  padding: 12px 24px;
+  border-radius: 999px;
+  background: var(--navy);
+  color: #fff;
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+}
+/* shine sweep */
+.cta::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -70%;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  transform: skewX(-20deg);
+}
+.cta:hover {
+  transform: translateY(-2px);
+  color: var(--navy);
+  background: var(--sun);
+  box-shadow: 0 10px 24px rgba(251, 133, 0, 0.4);
+}
+.cta:hover::after {
+  left: 130%;
+  transition: left 0.7s ease;
+}
+.cta:active { transform: translateY(0) scale(0.97); }
+.cta:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+
+/* ---------- Hamburger ---------- */
+.burger {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--navy);
+  cursor: pointer;
+  position: relative;
+  z-index: 1002;
+}
+.burger span {
+  position: absolute;
+  left: 13px;
+  width: 18px;
+  height: 2px;
+  border-radius: 2px;
+  background: #fff;
+  transition: transform 0.35s ease, opacity 0.25s ease, top 0.35s ease;
+}
+.burger span:nth-child(1) { top: 15px; }
+.burger span:nth-child(2) { top: 21px; }
+.burger span:nth-child(3) { top: 27px; }
+.burgerOpen { background: var(--amber); }
+.burgerOpen span:nth-child(1) { top: 21px; transform: rotate(45deg); }
+.burgerOpen span:nth-child(2) { opacity: 0; }
+.burgerOpen span:nth-child(3) { top: 21px; transform: rotate(-45deg); }
+
+/* ---------- Mobile drawer ---------- */
+.drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 1001;
+  display: grid;
+  place-items: center;
+  background: var(--navy);
+  clip-path: circle(0% at calc(100% - 46px) 46px);
+  transition: clip-path 0.7s cubic-bezier(0.7, 0, 0.2, 1);
+  pointer-events: none;
+}
+.drawerOpen {
+  clip-path: circle(150% at calc(100% - 46px) 46px);
+  pointer-events: auto;
+}
+.drawer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.drawer li {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.drawerOpen li {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(0.25s + var(--i) * 0.07s);
+}
+.drawer a {
+  display: block;
+  padding: 10px 24px;
+  color: var(--paper);
+  font-size: 1.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+.drawer a:hover { color: var(--sun); transform: translateX(6px); }
+.drawer a.drawerCta {
+  margin-top: 16px;
+  padding: 14px 32px;
+  border-radius: 999px;
+  background: var(--sun);
+  color: var(--navy);
+  font-size: 1.1rem;
+}
+.drawer a.drawerCta:hover { color: var(--navy); background: var(--amber); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 960px) {
+  .links, .cta { display: none; }
+  .burger { display: block; }
+  .header { padding: 12px 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header *, .header *::before, .header *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
+/* ---------- Active link + "More" dropdown (extra routes of this site) ---------- */
+.link.active::before { transform: translateY(0); }
+.links { gap: 2px; }
+.link { padding: 10px 14px; }
+.more { position: relative; }
+.moreBtn {
+  display: flex; align-items: center; gap: 6px;
+  padding: 10px 14px; border: 0; background: none; cursor: pointer;
+  color: var(--navy); font: inherit; font-size: 0.95rem; font-weight: 600;
+  border-radius: 999px; transition: background 0.3s ease;
+}
+.moreBtn svg { width: 12px; height: 12px; transition: transform 0.3s ease; }
+.more:hover .moreBtn, .more:focus-within .moreBtn, .moreBtnOn { background: rgba(251, 133, 0, 0.14); }
+.more:hover .moreBtn svg, .more:focus-within .moreBtn svg { transform: rotate(180deg); }
+.menu {
+  position: absolute; top: 100%; right: 0; min-width: 170px; margin: 0; padding: 8px;
+  list-style: none; border-radius: 18px; background: var(--paper);
+  border: 1px solid rgba(20, 33, 61, 0.08); box-shadow: 0 18px 40px rgba(20, 33, 61, 0.16);
+  opacity: 0; visibility: hidden; transform: translateY(8px);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+}
+.more:hover .menu, .more:focus-within .menu { opacity: 1; visibility: visible; transform: none; }
+.menu .link { padding: 9px 14px; border-radius: 12px; white-space: nowrap; }
+.logoImg { height: 44px; width: auto; max-width: 120px; border-radius: 8px; object-fit: contain; flex-shrink: 0; }
+.drawer a.dActive { color: var(--sun); }
+@media (max-width: 1100px) { .link, .moreBtn { padding: 10px 10px; font-size: 0.9rem; } .cta { padding: 11px 16px; font-size: 0.85rem; } }
