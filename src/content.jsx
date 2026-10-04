@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import { api } from './api.js';
 import fallback from './fallbackContent.js';
 import { opt } from './img.js';
+import { yearsSince } from './utils.js';
 
 const Ctx = createContext(null);
 export const useContent = () => useContext(Ctx);
@@ -17,8 +18,15 @@ function fill(d, def) {
   return out;
 }
 
+// "Years of Excellence" is always calculated from the established date (04 July 2003 by default)
+function withYears(d) {
+  if (!d || !Array.isArray(d.stats)) return d;
+  const y = String(yearsSince(d.general?.established));
+  return { ...d, stats: d.stats.map((s) => (s && /years/i.test(s.label || '') ? { ...s, value: y } : s)) };
+}
+
 const KEY = 'sunshine_content_v1';
-const readCache = () => { try { const d = JSON.parse(localStorage.getItem(KEY)); return d ? fill(d, fallback) : null; } catch { return null; } };
+const readCache = () => { try { const d = JSON.parse(localStorage.getItem(KEY)); return d ? withYears(fill(d, fallback)) : null; } catch { return null; } };
 const writeCache = (d) => { try { localStorage.setItem(KEY, JSON.stringify(d)); } catch { /* storage full / blocked */ } };
 
 // only the images that are visible first are waited for (logo, hero poster, first photos)
@@ -41,12 +49,12 @@ export function ContentProvider({ children }) {
         .then(async (data) => {
           writeCache(data);
           if (!cached && tries === 0) await preload(critical(data), 2500);
-          if (alive) setState({ data: fill(data, fallback), ready: true, error: false, offline: false });
+          if (alive) setState({ data: withYears(fill(data, fallback)), ready: true, error: false, offline: false });
         })
         .catch(() => {
           if (!alive) return;
           // server slow / sleeping / down: open the site with the built-in content, keep retrying quietly
-          if (!cached && tries === 0) setState({ data: fallback, ready: true, error: false, offline: true });
+          if (!cached && tries === 0) setState({ data: withYears(fallback), ready: true, error: false, offline: true });
           if (++tries < 8) timer = setTimeout(load, 8000);
         });
     };

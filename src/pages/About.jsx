@@ -1,6 +1,7 @@
 import { useContent } from '../content.jsx';
 import { opt } from '../img.js';
 import PageBanner from '../components/PageBanner.jsx';
+import Leadership from '../components/Leadership/Leadership.jsx';
 
 export default function About() {
   const { data } = useContent();
@@ -18,6 +19,7 @@ export default function About() {
           <div className="card pad"><h3>Our Vision</h3><p>{a.vision}</p></div>
         </div>
       </section>
+      <Leadership />
       <section className="stats"><div className="grid">
         {data.stats.map((s, i) => <div key={i}><b>{s.value}</b>{s.label}</div>)}
       </div></section>

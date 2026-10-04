@@ -228,7 +228,7 @@ export default function Campus() {
           <video
             ref={vref}
             className={styles.video}
-            src={h.video}
+            src="https://res.cloudinary.com/dmliuh8nm/video/upload/v1791115187/gemini_generated_video_b379d636_online-video-cutter.com_eepg8f.mp4"
             poster={h.poster || undefined}
             muted
             loop

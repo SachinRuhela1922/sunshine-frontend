@@ -4,11 +4,13 @@ const IMG = 'image', VID = 'video', TA = 'textarea';
 const titleDesc = [{ k: 'title', l: 'Title' }, { k: 'desc', l: 'Description', t: TA }, { k: 'image', l: 'Image', t: IMG }];
 const MEDALS = [['gold', 'Gold'], ['silver', 'Silver'], ['bronze', 'Bronze'], ['star', 'Star / Certificate']];
 const CATS = [['Academics', 'Academics'], ['Sports', 'Sports'], ['Arts', 'Arts'], ['Science', 'Science']];
+const ROLES = [['Director', 'Director'], ['Principal', 'Principal'], ['Vice Principal', 'Vice Principal']];
 const dateItem = [{ k: 'title', l: 'Title' }, { k: 'date', l: 'Date' }, { k: 'desc', l: 'Description', t: TA }, { k: 'image', l: 'Image', t: IMG }];
 
 export const SCHEMA = [
   { key: 'general', title: 'General Info', fields: [
     { k: 'schoolName', l: 'School Name' }, { k: 'tagline', l: 'Tagline' }, { k: 'logo', l: 'Logo', t: IMG },
+    { k: 'established', l: 'Established date (founding date)', t: 'date', h: 'Default: 04 July 2003. The website shows it in the Leadership section and footer, and "Years of Excellence" is calculated from it automatically.' },
     { k: 'phone', l: 'Phone' }, { k: 'email', l: 'Email' }, { k: 'address', l: 'Address', t: TA },
     { k: 'mapEmbed', l: 'Google Map Embed URL (iframe src)' },
     { k: 'facebook', l: 'Facebook URL' }, { k: 'instagram', l: 'Instagram URL' }, { k: 'youtube', l: 'YouTube URL' }] },
@@ -22,7 +24,7 @@ export const SCHEMA = [
     ['about', 'About'], ['programs', 'Programs'], ['facilities', 'Facilities'], ['teachers', 'Teachers'],
     ['gallery', 'Gallery'], ['news', 'News'], ['events', 'Events'], ['social', 'Social'], ['contact', 'Contact']],
     fields: [{ k: 'title', l: 'Title' }, { k: 'subtitle', l: 'Subtitle' }, { k: 'banner', l: 'Banner Image', t: IMG }] },
-  { key: 'stats', title: 'Stats', list: true, name: 'Stat', fields: [{ k: 'value', l: 'Value (e.g. 1500+)' }, { k: 'label', l: 'Label' }] },
+  { key: 'stats', title: 'Stats', list: true, name: 'Stat', fields: [{ k: 'value', l: 'Value (e.g. 1500+)', h: 'For the "Years of Excellence" stat the value is calculated automatically from the Established date, so you do not need to change it every year.' }, { k: 'label', l: 'Label' }] },
   { key: 'programs', title: 'Programs', list: true, name: 'Program', fields: titleDesc },
   { key: 'facilities', title: 'Facilities', list: true, name: 'Facility', fields: titleDesc },
   { key: 'teachers', title: 'Teachers', list: true, name: 'Teacher', fields: [{ k: 'name', l: 'Name' }, { k: 'role', l: 'Role / Subject' }, { k: 'image', l: 'Photo', t: IMG }] },
@@ -41,6 +43,20 @@ export const SCHEMA = [
     { k: 'visitSubtitle', l: '"Visit Our School" subtitle', t: TA },
     { k: 'visitHoursText', l: 'Visiting hours line', h: 'e.g. "Monday to Saturday, 9:00 AM to 1:00 PM"' }] },
   { key: 'whyFeatures', title: 'Home - Why Sunshine (4 cards)', list: true, name: 'Card', fields: [{ k: 'title', l: 'Title' }, { k: 'text', l: 'Text', t: TA }] },
+
+  // ---------- Leadership ----------
+  { key: 'leadershipInfo', title: 'Leadership - Section Heading', fields: [
+    { k: 'title', l: 'Section title', h: 'The last word is shown in the orange accent colour, e.g. \"Our Leadership\".' },
+    { k: 'subtitle', l: 'Section subtitle', t: TA }] },
+  { key: 'leadership', title: 'Leadership - Director, Principal, Vice Principal', list: true, name: 'Leader', fields: [
+    { k: 'role', l: 'Role', t: 'select', o: ROLES }, { k: 'name', l: 'Full name (e.g. Mrs. Anita Sharma)' }, { k: 'image', l: 'Photo', t: IMG },
+    { k: 'qualification', l: 'Qualification' }, { k: 'experience', l: 'Experience (e.g. 25 years of teaching)' }, { k: 'joined', l: 'Position since (e.g. Principal since 2008)' },
+    { k: 'quote', l: 'Short quote (shown on the card)', t: TA },
+    { k: 'message', l: 'Message / about (new line = new paragraph)', t: TA },
+    { k: 'achievements', l: 'What they have done (one per line)', t: TA, h: 'Write one achievement per line. Optional format: Title | short detail. Example: Started scholarship programme | Merit and need based scholarships for deserving students.' },
+    { k: 'f1v', l: 'Fact 1 - number (e.g. 25)' }, { k: 'f1l', l: 'Fact 1 - label' },
+    { k: 'f2v', l: 'Fact 2 - number' }, { k: 'f2l', l: 'Fact 2 - label' },
+    { k: 'f3v', l: 'Fact 3 - number' }, { k: 'f3l', l: 'Fact 3 - label' }] },
 
   // ---------- Campus ----------
   { key: 'campusFacts', title: 'Campus - Quick Facts', list: true, name: 'Fact', fields: [{ k: 'value', l: 'Value (e.g. 5 acres)' }, { k: 'label', l: 'Label' }] },

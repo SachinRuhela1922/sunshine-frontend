@@ -5,6 +5,7 @@ export default {
   "schoolName": "Sunshine School",
   "tagline": "Learn. Grow. Shine.",
   "logo": "",
+  "established": "2003-07-04",
   "phone": "+91 98765 43210",
   "email": "info@sunshineschool.edu",
   "address": "Main Road, Moradabad, Uttar Pradesh, India",
@@ -15,7 +16,7 @@ export default {
  },
  "hero": {
   "title": "Welcome to Sunshine School",
-  "subtitle": "Nurturing young minds with knowledge, values and creativity since 1995.",
+  "subtitle": "Nurturing young minds with knowledge, values and creativity since 2003.",
   "ctaText": "Apply for Admission",
   "video": "https://res.cloudinary.com/demo/video/upload/dog.mp4",
   "poster": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1400&q=70"
@@ -85,7 +86,7 @@ export default {
   },
   {
    "label": "Years of Excellence",
-   "value": "30"
+   "value": "auto"
   },
   {
    "label": "Awards",
@@ -235,6 +236,63 @@ export default {
   "visitSubtitle": "The best way to know a school is to walk through it. Come see the classrooms, meet the teachers and ask us anything.",
   "visitHoursText": "Monday to Saturday, 9:00 AM to 1:00 PM"
  },
+ "leadershipInfo": {
+  "title": "Our Leadership",
+  "subtitle": "The people who guide Sunshine School every day with vision, discipline and a lot of heart. Tap a card to see what each of them has done for our school."
+ },
+ "leadership": [
+  {
+   "role": "Director",
+   "name": "Mr. Vikram Singh Rathore",
+   "image": "",
+   "qualification": "M.A., B.Ed., M.B.A. (Education Management)",
+   "experience": "30+ years in education",
+   "joined": "Founder, since 2003",
+   "quote": "A school is not built with bricks. It is built with the dreams of every child who walks in.",
+   "message": "When we opened our doors on 4 July 2003, we had a few classrooms and one big promise: every child in this city deserves a joyful, honest and world-class education.\nToday that promise lives in our smart classrooms, our labs, our playgrounds and, most of all, in our students. We will keep growing, but we will never stop putting children first.",
+   "achievements": "Founded Sunshine School on 4 July 2003 | Started with a small building and a big dream of quality education for every child.\nBuilt a modern campus | Added smart classrooms, science labs, a library and a large sports ground over the years.\nScholarship programme | Started merit and need-based scholarships so that no talented child is left behind.\nSafe campus initiative | Brought in CCTV, verified staff and a safe school transport system.",
+   "f1v": "2003",
+   "f1l": "School founded",
+   "f2v": "1500+",
+   "f2l": "Students today",
+   "f3v": "120+",
+   "f3l": "Awards won"
+  },
+  {
+   "role": "Principal",
+   "name": "Mrs. Anita Sharma",
+   "image": "",
+   "qualification": "M.Sc., M.Ed., Ph.D. (Education)",
+   "experience": "25 years of teaching and leadership",
+   "joined": "Principal since 2008",
+   "quote": "Every child can shine. Our job is to find the light and help it grow.",
+   "message": "Academics matter, but character matters more. At Sunshine we want children who are curious, kind and confident, who can answer a question and also ask a better one.\nOur teachers work as one family with parents. Come, visit us, and see how learning feels when children are happy to be at school.",
+   "achievements": "Consistent top board results | Led the school to excellent results year after year, with many students scoring above 90%.\nActivity-based learning | Introduced experiments, projects and storytelling in every class from nursery to senior school.\nTeacher training | Started regular workshops each term so that every teacher stays updated with modern methods.\nAwards and recognition | Guided students to 120+ district, state and national level awards.",
+   "f1v": "25",
+   "f1l": "Years of experience",
+   "f2v": "98%",
+   "f2l": "Board pass results",
+   "f3v": "80+",
+   "f3l": "Teachers mentored"
+  },
+  {
+   "role": "Vice Principal",
+   "name": "Mrs. Kavita Singh",
+   "image": "",
+   "qualification": "M.A., B.Ed.",
+   "experience": "18 years of teaching and administration",
+   "joined": "Vice Principal since 2014",
+   "quote": "Discipline and kindness are not opposites. The best classrooms have both.",
+   "message": "I work closely with students, teachers and parents on a daily basis, and I believe small things done well every day create a great school.\nFrom a smooth timetable to a friendly corridor, we make sure that every child feels heard, safe and encouraged.",
+   "achievements": "Smooth school systems | Redesigned the timetable, attendance and discipline process so that the school day runs on time.\nParent-teacher meetings | Started monthly parent-teacher meetings with clear progress reports for every child.\nHouse captains and prefects | Trains and mentors student leaders so they learn responsibility early.\nEvents and sports | Coordinates the annual day, sports day and inter-school competitions.",
+   "f1v": "18",
+   "f1l": "Years of experience",
+   "f2v": "12",
+   "f2l": "Events every year",
+   "f3v": "40+",
+   "f3l": "Student leaders mentored"
+  }
+ ],
  "whyFeatures": [
   {
    "title": "Safe & Caring Environment",

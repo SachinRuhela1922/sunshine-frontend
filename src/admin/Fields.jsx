@@ -30,7 +30,7 @@ export function Field({ obj, f, refresh }) {
         )
         : f.t === 'textarea'
         ? <textarea value={obj[f.k] || ''} onChange={(e) => set(e.target.value)} />
-        : <input value={obj[f.k] || ''} onChange={(e) => set(e.target.value)} placeholder={isMedia ? 'Paste URL or upload a file below' : ''} />}
+        : <input type={f.t === 'date' ? 'date' : 'text'} value={obj[f.k] || ''} onChange={(e) => set(e.target.value)} placeholder={isMedia ? 'Paste URL or upload a file below' : ''} />}
       {f.h && <small className="hint">{f.h}</small>}
       {isMedia && (
         <>

@@ -5,6 +5,7 @@ import { AboutSection, NewsSection, EventsSection, SocialSection, TestimonialsSe
 
 // heavy sections far down the page load in the background after the top of the page is ready
 const Different = lazy(() => import('../components/Different/Different.jsx'));
+const Leadership = lazy(() => import('../components/Leadership/Leadership.jsx'));
 const Journey = lazy(() => import('../components/Journey/Journey.jsx'));
 const Campus = lazy(() => import('../components/Campus/Campus.jsx'));
 const Achievers = lazy(() => import('../components/Achievers/Achievers.jsx'));
@@ -18,6 +19,7 @@ export default function Home() {
       <Hero />
       <WhySunshine />
       <AboutSection />
+      <Hold h={700}><Leadership /></Hold>
       <Hold><Different /></Hold>
       <Hold><Journey /></Hold>
       <NewsSection />

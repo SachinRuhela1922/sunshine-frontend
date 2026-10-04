@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useContent } from '../content.jsx';
 import { NAV } from './Navbar.jsx';
 import { opt } from '../img.js';
+import { fmtDate } from '../utils.js';
 import styles from './Footer.module.css';
 
 const ICONS = {
@@ -41,6 +42,7 @@ export default function Footer() {
               {g.schoolName}
             </Link>
             <p>{g.tagline}</p>
+            <p style={{ marginTop: 8, fontSize: '0.85rem', opacity: 0.75 }}>Established {fmtDate(g.established)}</p>
             {soc.length > 0 && (
               <ul className={styles.social} aria-label="Social media">
                 {soc.map(([k, n]) => (
