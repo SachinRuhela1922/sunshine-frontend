@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useContent } from '../../content.jsx';
-import { CardGrid, infoCard, dateCard } from '../Cards.jsx';
+import { CardGrid, infoCard, dateCard, eventCard } from '../Cards.jsx';
 import SocialGrid, { usePosts } from '../SocialFeed.jsx';
 import { opt } from '../../img.js';
 import styles from './HomeSections.module.css';
@@ -61,7 +61,7 @@ export function EventsSection() {
   if (!data.events?.length) return null;
   return (
     <Frame id="events" title="Upcoming Events" subtitle="Dates worth marking on your calendar." alt to="/events">
-      <CardGrid items={data.events.slice(0, 3)} render={dateCard} />
+      <CardGrid items={data.events.slice(0, 3)} render={eventCard} />
     </Frame>
   );
 }

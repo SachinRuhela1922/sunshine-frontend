@@ -5,6 +5,9 @@ const titleDesc = [{ k: 'title', l: 'Title' }, { k: 'desc', l: 'Description', t:
 const MEDALS = [['gold', 'Gold'], ['silver', 'Silver'], ['bronze', 'Bronze'], ['star', 'Star / Certificate']];
 const CATS = [['Academics', 'Academics'], ['Sports', 'Sports'], ['Arts', 'Arts'], ['Science', 'Science']];
 const ROLES = [['Director', 'Director'], ['Principal', 'Principal'], ['Vice Principal', 'Vice Principal']];
+const eventItem = [{ k: 'title', l: 'Title' }, { k: 'date', l: 'Date' }, { k: 'desc', l: 'Description', t: TA },
+  { k: 'image', l: 'Cover Image', t: IMG, h: 'Cover photo of the event. If you also add a video below, this image is shown as the video thumbnail.' },
+  { k: 'video', l: 'Cover Video (optional)', t: VID, h: 'Upload a video or paste a URL. If a video is added, the event card plays the video; otherwise the image is shown.' }];
 const dateItem = [{ k: 'title', l: 'Title' }, { k: 'date', l: 'Date' }, { k: 'desc', l: 'Description', t: TA }, { k: 'image', l: 'Image', t: IMG }];
 
 export const SCHEMA = [
@@ -30,7 +33,7 @@ export const SCHEMA = [
   { key: 'teachers', title: 'Teachers', list: true, name: 'Teacher', fields: [{ k: 'name', l: 'Name' }, { k: 'role', l: 'Role / Subject' }, { k: 'image', l: 'Photo', t: IMG }] },
   { key: 'gallery', title: 'Gallery', list: true, name: 'Photo', bulk: 'image', fields: [{ k: 'image', l: 'Image', t: IMG }, { k: 'caption', l: 'Caption' }] },
   { key: 'news', title: 'News', list: true, name: 'News', fields: dateItem },
-  { key: 'events', title: 'Events', list: true, name: 'Event', fields: dateItem },
+  { key: 'events', title: 'Events', list: true, name: 'Event', fields: eventItem },
   { key: 'testimonials', title: 'Testimonials', list: true, name: 'Testimonial', fields: [{ k: 'name', l: 'Name' }, { k: 'role', l: 'Role' }, { k: 'text', l: 'Text', t: TA }] },
 
   // ---------- Home page texts ----------

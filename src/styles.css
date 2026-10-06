@@ -29,6 +29,29 @@ ul{list-style:none}
 .card:hover{transform:translateY(-6px);box-shadow:0 24px 48px rgba(251,133,0,.16)}
 .card.pad{padding:26px}
 .card img{width:100%;height:200px;object-fit:cover}
+/* ---------- Event video cover ---------- */
+.card>.vc{padding:0}               /* .card>div ka 20px padding hatane ke liye zaruri */
+.vc{position:relative;height:200px;background:#000;overflow:hidden;cursor:pointer}
+.vc-video{display:block;width:100%;height:100%;object-fit:cover}
+.vc::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05) 40%,rgba(0,0,0,.45));pointer-events:none;transition:opacity .3s}
+.vc.is-playing::after{opacity:0}
+
+.vc-badge{position:absolute;top:12px;left:12px;z-index:2;background:rgba(20,33,61,.75);backdrop-filter:blur(6px);color:#fff;font-size:11px;font-weight:700;letter-spacing:.08em;padding:5px 10px;border-radius:999px;pointer-events:none;transition:opacity .3s}
+.vc.is-playing .vc-badge{opacity:0}
+
+.vc-play{position:absolute;top:50%;left:50%;z-index:2;transform:translate(-50%,-50%);width:62px;height:62px;border-radius:50%;border:0;background:#fb8500;color:#fff;display:grid;place-items:center;padding-left:4px;cursor:pointer;box-shadow:0 0 0 8px rgba(251,133,0,.28),0 10px 26px rgba(0,0,0,.35);transition:transform .25s,box-shadow .25s}
+.vc:hover .vc-play{transform:translate(-50%,-50%) scale(1.08);box-shadow:0 0 0 12px rgba(251,133,0,.22),0 12px 30px rgba(0,0,0,.4)}
+
+.vc-bar{position:absolute;left:0;right:0;bottom:0;z-index:3;display:flex;align-items:center;gap:10px;padding:18px 12px 9px;background:linear-gradient(transparent,rgba(0,0,0,.7));opacity:0;transform:translateY(6px);transition:opacity .25s,transform .25s}
+.vc:hover .vc-bar,.vc:not(.is-playing) .vc-bar{opacity:1;transform:none}
+.vc-track{flex:1;height:5px;border-radius:99px;background:rgba(255,255,255,.35);cursor:pointer;position:relative;transition:height .15s}
+.vc-track::before{content:"";position:absolute;inset:-8px 0}   /* click karna aasaan */
+.vc-track:hover{height:7px}
+.vc-fill{height:100%;border-radius:99px;background:#fb8500;pointer-events:none}
+.vc-btn{border:0;background:rgba(255,255,255,.18);color:#fff;font-size:12px;font-weight:600;padding:5px 10px;border-radius:99px;cursor:pointer;backdrop-filter:blur(4px)}
+.vc-btn:hover{background:rgba(255,255,255,.32)}
+
+@media (hover:none){ .vc-bar{opacity:1;transform:none} }  /* mobile pe bar hamesha dikhe */
 .card>div{padding:20px}
 .card.pad>div{padding:0}
 .card h3{margin-bottom:6px;color:var(--d)}
